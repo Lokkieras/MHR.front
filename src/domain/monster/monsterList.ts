@@ -1,7 +1,7 @@
 import type { Monster } from "./monster";
 
 export class MonsterList {
-    monstersList: Monster[]
+    monsterList: Monster[]
     count: number
 
 }

@@ -15,7 +15,8 @@ export default () => {
       const tryGetAllMonsters = async (search: SearchMonster) => {
             try {
                   let response = await getAllMonsters(search);
-                  state.monsterList = response.monstersList;
+                  console.log(response)
+                  state.monsterList = response.monsterList;
                   state.totalCount = response.count;
             } catch (error) {
                   console.error(error);

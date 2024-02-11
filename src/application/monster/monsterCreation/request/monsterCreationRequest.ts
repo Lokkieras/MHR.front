@@ -1,4 +1,7 @@
 export class MonsterCreationRequest{
-    id?: number;
     name?: string;
+    typeID?: number;
+    threatLevel?: number;
+    max?: number;
+    min?: number;
 }

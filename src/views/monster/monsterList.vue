@@ -48,6 +48,7 @@
     const getMonsterFiltered = async (filter: Ref<SearchMonster>) => {
       try {
         await tryGetAllMonsters(filter.value);
+        console.log(monsterList.value)
       } catch (error) {
         console.error(error)
       }
@@ -64,7 +65,7 @@
 
     const updateFilters = (values: Record<string, any>) => {
       filter.value.id = values["id"];
-      filter.value.tag = values["tag"]?.id;
+      filter.value.name = values["name"];
 
       if (searchTimeout) {
             clearTimeout(searchTimeout);

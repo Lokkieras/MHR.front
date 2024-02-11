@@ -1,5 +1,5 @@
 import type { MonsterCreationState } from '@/domain/monster/monsterCreation/monsterCreationState';
-import { saveNewMonster, updateMonsterDetails } from '@/infraestructure/monster/monsterCreation/monsterCreation';
+import { saveNewMonster, updateMonsterDetails, getTypes } from '@/infraestructure/monster/monsterCreation/monsterCreation';
 import { reactive, toRefs } from 'vue';
 import type {  MonsterDetail } from '../../../domain/monster/monsterDetails/monsterDetails';
 import type { UpdateMonsterRequest } from './request/UpdateMonsterRequest';
@@ -7,7 +7,8 @@ import { MonsterCreation } from '@/domain/monster/monsterCreation/monsterCreatio
 import type { MonsterCreationRequest } from './request/monsterCreationRequest';
 
 const state = reactive<MonsterCreationState>({
-      newMonster: new MonsterCreation()
+      newMonster: new MonsterCreation(),
+      types: []
 })
 
 export default () => {
@@ -28,6 +29,14 @@ export default () => {
            state.newMonster = { ...monster };
       }
 
+      const tryGetTypes = async () => {
+            try {
+                  state.types = await getTypes();
+            } catch (error) {
+                  console.error(error);
+            }
+      }
+
       const tryUpdateMonster = async (monster: UpdateMonsterRequest) => {
             try {
                  let response = await updateMonsterDetails(monster);
@@ -41,11 +50,13 @@ export default () => {
 
       const resetState = () => {
             state.newMonster = new MonsterCreation();
+            state.types = [];
       }
 
       return {
             trySaveNewMonster,
             tryUpdateMonster,
+            tryGetTypes,
             resetState,
             setState,
             ...toRefs(state)

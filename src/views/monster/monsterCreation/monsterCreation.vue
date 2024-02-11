@@ -4,6 +4,23 @@
       <div class="col-4">
               <MHBaseTextField v-model:value="newMonster.name" :label='$t("newMonster.name")' />
       </div>
+      <div class="col-4">
+              <MHBaseAutocomplete 
+                v-model:value="newMonster.TypeID"
+                :label='$t("newMonster.Type")'  
+                :items=types
+                translation="params.monster_type" 
+              />
+      </div>
+      <div class="col-4">
+              <MHBaseInputNumber v-model:value="newMonster.ThreatLevel" :label='$t("newMonster.ThreatLevel")' />
+      </div>
+      <div class="col-4">
+              <MHBaseInputNumber v-model:value="newMonster.Min" :label='$t("newMonster.Min")' />
+      </div>
+      <div class="col-4">
+              <MHBaseInputNumber v-model:value="newMonster.Max" :label='$t("newMonster.Max")' />
+      </div>
   </div>
 
   <div class="mt-3 flex justify-content-end">
@@ -27,17 +44,19 @@
   import { useI18n } from 'vue-i18n';
   import { Severity } from '@/Share/constants/enums/Severity';
   import MHBaseTextField from '@/components/baseComponents/MHBaseTextField.vue';
+  import MHBaseInputNumber from '@/components/baseComponents/MHBaseInputNumber.vue';
+  import MHBaseAutocomplete from '@/components/baseComponents/MHBaseAutocomplete.vue';
 
-  const { setHeaderMessage, setHeaderAdditionalMsg, resetHeaderState } = headerState();
+  const { resetHeaderState } = headerState();
   const { errors } = useErrorHandling();
 
   const router = useRouter();
-  const {trySaveNewMonster, tryUpdateMonster, resetState, newMonster } = monsterCreationState();
+  const {trySaveNewMonster, tryUpdateMonster,  tryGetTypes, resetState, newMonster, types } = monsterCreationState();
   const { setMessage } = messageState();
   const { t } = useI18n();
 
   onMounted(async () => {
-
+    await tryGetTypes();
   });
 
   onBeforeUnmount(() => {
@@ -45,12 +64,14 @@
     resetHeaderState();
   });
 
-  function routerNavigation(){
+  const routerNavigation = () =>{
     router.push({ path: `/monsters/${newMonster.value.id}`});
   }
 
   const saveMonster = async () => {
-    let monsterRequest = {...newMonster.value }
+    let monsterRequest = {...newMonster.value,
+      TypeID: newMonster.value.TypeID.id
+    }
 
     let response;
     try {

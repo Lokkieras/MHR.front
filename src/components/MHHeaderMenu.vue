@@ -14,31 +14,13 @@
 
   const router = useRouter();
   const { t } = useI18n();
-  
-  let title = ref("diary");
-
-
-  let showModalUserSelection = ref(false);
-
-  const props = defineProps<{
-    additionalValues?: Array<string>;
-  }>();
-
-  const showModalSelection = () => {
-      showModalUserSelection.value = true;
-  }
-
-  const routerNavigation = (navigation: string) =>{
-      title.value = navigation;
-      router.push({ name: navigation});
-  }
 
   const items = ref([
     {
         label: t('principalNav.monsters'),
         icon: 'pi pi-home',
         command: () => {
-          router.push('monsters')
+          router.push({ name: "monster"})
         }
     }
 ]);

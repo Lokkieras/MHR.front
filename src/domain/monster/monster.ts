@@ -1,4 +1,8 @@
 export class Monster {
     id?: number;
-	name?: string;
+    name?: string;
+    typeID?: number;
+    threatLevel?: number;
+    max?: number;
+    min?: number;
 }

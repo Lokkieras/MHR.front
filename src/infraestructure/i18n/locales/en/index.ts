@@ -14,9 +14,23 @@
         save: "Save",
     },
     params: {
-        monsterTypes : {
-            wyvern: "Wyvern",
-            water: "water"
+        monster_type: {
+            Fanged_Beasts: "Fanged Beasts",
+            Bird_Wyverns: "Bird Wyverns",
+            Brute_Wyverns: "Brute Wyverns",
+            Flying_Wyverns: "Flying Wyverns",
+            Piscine_Wyverns: "Piscine Wyverns",
+            Pelagus: "Pelagus",
+            Carapaceons: "Carapaceons",
+            Neopterons: "Neopterons",
+            Leviathans: "Leviathans",
+            Fanged_Wyverns: "Fanged Wyverns",
+            Elder_Dragons: "Elder Dragons",
+            Temnocerans: "Temnocerans",
+            Amphibians: "Amphibians",
+            Snake_Wyverns: "Snake Wyverns",
+            Serpents: "Serpents",
+            Mycelium: "Mycelium"
         }
     },
     monsterDetail: {
