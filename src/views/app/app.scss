@@ -1,0 +1,47 @@
+#app {
+    font-family: sans-serif;
+}
+
+.main {
+    background-color: var(--surface-card);
+    cursor: url(../../assets/images/mouse-cursor-icon-2.jpg), auto;
+    padding: 1em;
+}
+
+
+body {
+	background-color: var(--surface-ground);
+}
+
+.p-tabview-nav {
+    justify-content: center;
+}
+
+
+span { cursor: pointer; }
+
+.parent {
+    height: 1000px;
+    display: flex;
+}
+.child {
+    height: 40px;
+    width: 100%;
+    align-self: flex-end;
+}
+
+.hide {
+  display: none;
+}
+
+.main {
+    margin-top: 90px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: -webkit-fill-available;
+    z-index: 9999;
+    left: 0;
+}
